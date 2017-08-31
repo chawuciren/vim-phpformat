@@ -14,8 +14,8 @@ let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1)
 let g:phpfmt_php_path = get(g:, 'phpfmt_php_path', 'php')
 let g:phpfmt_enable_default_mapping = get(g:, 'phpfmt_enable_default_mapping', '1')
 
-let g:phpfmt_command = g:phpfmt_php_path.' '.expand('<sfile>:p:h').'/fmt.phar --no-backup'
-let g:phpfmt_update_command = g:phpfmt_php_path.' '.expand('<sfile>:p:h').'/fmt.phar --selfupdate'
+let g:phpfmt_command = g:phpfmt_php_path.' '.expand('<sfile>:p:h').'/fmt.stub.php --no-backup'
+let g:phpfmt_update_command = g:phpfmt_php_path.' '.expand('<sfile>:p:h').'/fmt.stub.php --selfupdate'
 
 if exists('g:phpfmt_config')
   let g:phpfmt_command = g:phpfmt_command.' --config='.g:phpfmt_config
@@ -95,7 +95,7 @@ if(g:phpfmt_on_save == 1)
 endif
 
 if(g:phpfmt_update_on_open == 1)
-    if(localtime() - getftime(expand('<sfile>:p:h').'/fmt.phar') > 300)
+    if(localtime() - getftime(expand('<sfile>:p:h').'/fmt.stub.php') > 300)
         if has("win32")
             let s:update_cmd = system(g:phpfmt_update_command)
         else
